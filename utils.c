@@ -46,21 +46,24 @@ char	*fra_itoa(int n)
 	char	*temp;
 
 	size = (ft_size(n) + 1);
+	//fprintf(stderr, "int: %d, size:%d\n", n, size);
 	dest = malloc(sizeof(char) * size);
 	if (dest == NULL)
 		return (NULL);
 	if (n < 0)
 	{
 		n = (n * -1);
-		dest[size - size] = '-';
+		dest[0] = '-';
 	}
-	dest[size-- - 1] = '\0';
+	dest[size - 1] = '\0';
+	size--;
 	while (n >= 1)
 	{
-		dest[size-- - 1] = (n % 10) + '0';
+		dest[size - 1] = (n % 10) + 48;
 		n = n / 10;
+		size--;
 	}
-	temp = dest;
+	temp = strdup(dest);
 	free(dest);
 	return (temp);
 }

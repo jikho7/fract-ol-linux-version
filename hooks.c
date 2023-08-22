@@ -33,9 +33,9 @@ int	keyboard_input(int keycode, t_data *data)
 		data->fra.u_d -= 25;
 	// if (keycode == 126)
 	// 	data->fra.u_d -= 25;
-	if (keycode == 113)
+	if (keycode == 97)
 		data->fra.multi += 0.012;
-	if (keycode == 45)
+	if (keycode == 115)
 		data->fra.multi -= 0.012;
 	return (0);
 }

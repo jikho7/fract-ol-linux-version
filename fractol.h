@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <complex.h>
+# include <string.h>
 
 # define WID 700
 # define HEI 700

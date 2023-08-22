@@ -27,10 +27,14 @@ int	init_mlx(t_data *data)
 
 void	info_display(t_data *data)
 {
+	int to_print = (int)data->fra.z;
 	data->fra.zoom = "Zoom:";
+	// fprintf(stderr, "%f\n", data->fra.z);
+	// fprintf(stderr, "%d\n", to_print);
 	mlx_string_put(data->mlx, data->mlx_win, 0, 50, 0xffffff, data->fra.zoom);
-	mlx_string_put(data->mlx, data->mlx_win, 50, 50, 0xffffff,
-		fra_itoa(data->fra.z));
+	mlx_string_put(data->mlx, data->mlx_win, 50, 50, 0xffffff, fra_itoa(to_print));
+	//fprintf(stderr, ">> %s\n", fra_itoa(to_print));
+	
 }
 
 int	close_window(t_data *data)

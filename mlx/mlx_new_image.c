@@ -20,6 +20,15 @@
 #define	X_ShmAttach	1
 
 int	mlx_X_error;
+
+int	shm_att_pb(Display *d,XErrorEvent *ev)
+{
+  if (ev->request_code==146 && ev->minor_code==X_ShmAttach)
+    write(2,WARN_SHM_ATTACH,strlen(WARN_SHM_ATTACH));
+  mlx_X_error = 1;
+}
+
+
 /*
 **  Data malloc :  width+32 ( bitmap_pad=32 ),    *4 = *32 / 8bit
 */
@@ -63,7 +72,7 @@ void	*mlx_int_new_xshm_image(t_xvar *xvar,int width,int height,int format)
     }
   img->shm.readOnly = False;
   mlx_X_error = 0;
-  //save_handler = XSetErrorHandler(shm_att_pb);
+  save_handler = XSetErrorHandler(shm_att_pb);
   if (!XShmAttach(xvar->display,&(img->shm)) ||
       0&XSync(xvar->display,False) || mlx_X_error)
     {

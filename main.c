@@ -1,4 +1,4 @@
-make fclean/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -30,7 +30,8 @@ int	main(int ac, char**av)
 		init_mlx(&data);
 		mlx_mouse_hook(data.mlx_win, &mouse_controls, &data);
 		mlx_hook(data.mlx_win, 17, 0, &close_window, &data);
-		mlx_hook(data.mlx_win, 2, 0, &keyboard_input, &data);
+		mlx_hook(data.mlx_win, 2, 1L<<0, &keyboard_input, &data);
+		fprintf(stderr, "%f/n", data.fra.z);
 		mlx_key_hook(data.mlx_win, &keyboard_input, &data);
 		mlx_loop_hook(data.mlx, &render, &data);
 		mlx_loop(data.mlx);
